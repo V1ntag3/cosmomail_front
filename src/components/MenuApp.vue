@@ -1,11 +1,15 @@
 <template>
   <div class="menu">
     <div class="item" href="">
+      <a href="/inicial">
       <img class="item-icon" src="../assets/img/home.svg" alt="" srcset="" />
+    </a>
     </div>
     <div id="menu-title" class="item" href="">WAIFU LEARN</div>
     <div class="item" href="">
+    <a href="/opicoes">
       <img class="item-icon" src="../assets/img/options.svg" alt="" />
+    </a>
     </div>
   </div>
 </template>
@@ -21,12 +25,13 @@ export default {
 .menu {
   background-color: rgb(41, 40, 41);
   position: fixed;
-  bottom: 0px;
+  top: 30px;
+  left: calc(50% - 150px);
   height: 70px;
-  width: 100%;
-  -webkit-box-shadow: -13px 46px 93px 30px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -13px 46px 93px 30px rgba(0, 0, 0, 0.75);
-  box-shadow: -13px 46px 93px 30px rgba(0, 0, 0, 0.75);
+  width: 300px;
+  box-shadow: -13px 46px 93px 30px rgb(0 0 0 / 75%);
+  border-radius: 40px;
+  z-index: 10000;
 }
 
 .item {
@@ -37,14 +42,36 @@ export default {
   cursor: pointer;
   transition: 0.5s;
 }
-.item:hover{
+
+.item:hover {
   opacity: 0.2;
 }
+
 .item-icon {
-  margin: 20px auto 0px auto;
+  margin: -35px auto 0px auto
 }
-#menu-title{
+
+#menu-title {
   font-family: GoodTimes-Regular;
   margin-bottom: 10px;
+}
+
+@media (max-width:992px) {}
+
+@media (max-width:768px) {}
+
+@media (max-width:576px) {
+  .menu {
+    background-color: rgb(41, 40, 41);
+    position: fixed;
+    top: unset;
+    bottom: 0px;
+    height: 70px;
+    width: 100%;
+    border-radius: 0px;
+    right: unset;
+    left: 0px;
+  }
+
 }
 </style>

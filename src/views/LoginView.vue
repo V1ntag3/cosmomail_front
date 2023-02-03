@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; width: 100%;">
+  <div class="login-complete" style="height: 100%; width: 100%;">
     <div class="container-image-login">
 
     </div>
@@ -23,10 +23,10 @@
           <div class="link">
             <a href="#"> Esqueci a senha?</a>
           </div>
-        <router-link :to="{name: 'InicialView'}">
-                <button id="registrar" class="letra-600-14-24-00075">Criar nova conta</button>
-          <button class="btn">Login</button>
-        </router-link>
+
+          <router-link :to="{ name: 'InicialView' }">
+            <button class="btn">Login</button>
+          </router-link>
           <button class="btn">Registrar</button>
 
         </form>
@@ -36,11 +36,11 @@
           <i class="bi bi-whatsapp icon-social"></i>
         </a>
         <a href="https://github.com/V1ntag3" target="_blank">
-           <i class="bi bi-github icon-social"></i>
+          <i class="bi bi-github icon-social"></i>
         </a>
         <a href="https://www.instagram.com/m.vi.r13/" target="_blank">
           <i class="bi bi-instagram icon-social"></i>
-        </a>        
+        </a>
       </div>
     </div>
 
@@ -54,10 +54,7 @@ export default {
 };
 </script>
 
-<style>
-body {
-  overflow: hidden;
-}
+<style scoped>
 
 .container-image-login {
   width: 70%;
@@ -187,7 +184,7 @@ a:hover {
     box-shadow: 1px 0px 44px 0px rgba(0, 0, 0, 0.75);
   }
 
-  body {
+  .login-complete{
     background: linear-gradient(207deg, #5c6260, #212c28, #65586f, #5d3c77);
     background-size: 800% 800%;
     background: linear-gradient(247deg, #69716f, #1f3932, #adadad);
