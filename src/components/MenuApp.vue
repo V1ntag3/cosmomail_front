@@ -1,15 +1,15 @@
 <template>
   <div class="menu">
     <div class="item" href="">
-      <a href="/inicial">
-      <img class="item-icon" src="../assets/img/home.svg" alt="" srcset="" />
-    </a>
+      <router-link :to="{ name: 'InicialView' }">
+        <img class="item-icon" src="../assets/img/home.svg" alt="" srcset="" />
+      </router-link>
     </div>
     <div id="menu-title" class="item" href="">WAIFU LEARN</div>
     <div class="item" href="">
-    <a href="/opcoes">
-      <img class="item-icon" src="../assets/img/options.svg" alt="" />
-    </a>
+      <router-link :to="{ name: 'OpcoesView' }">
+        <img class="item-icon" src="../assets/img/options.svg" alt="" />
+      </router-link>
     </div>
   </div>
 </template>
