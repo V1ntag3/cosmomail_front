@@ -1,40 +1,41 @@
 <template>
-  <LoginView />
+  <router-view></router-view>
 </template>
 
 <script>
 
-import LoginView from './views/LoginView.vue';
-
 export default {
   name: 'App',
   components: {
-    LoginView
   }
 }
 </script>
 
 <style>
+@import './assets/fonts/fonts-GoodTimes.css';
+@import './assets/fonts/fonts-Poppins.css';
 * {
   margin: 0px;
   padding: 0px;
   transition: 0.5s;
   text-decoration: none;
 }
-html {
-  width: 100%;
-  height: 100%;
-}
-body {
+body{
   height: 100%;
   width: 100%;
 }
-a{
+html{
+  height: 100%;
+  width: 100%;
+}
+a {
   color: white;
 }
-a:link{
+
+a:link {
   text-decoration: none;
 }
+
 .color1 {
   color: #000000;
 }
@@ -61,66 +62,10 @@ a:link{
   text-align: center;
   color: #2c3e50;
   height: 100%;
-  width: 100%;
 }
 
 
 /* background-color: white; */
 
 
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 94%
-  }
-
-  50% {
-    background-position: 100% 7%
-  }
-
-  100% {
-    background-position: 0% 94%
-  }
-}
-
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 94%
-  }
-
-  50% {
-    background-position: 100% 7%
-  }
-
-  100% {
-    background-position: 0% 94%
-  }
-}
-
-@-o-keyframes AnimationName {
-  0% {
-    background-position: 0% 94%
-  }
-
-  50% {
-    background-position: 100% 7%
-  }
-
-  100% {
-    background-position: 0% 94%
-  }
-}
-
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 94%
-  }
-
-  50% {
-    background-position: 100% 7%
-  }
-
-  100% {
-    background-position: 0% 94%
-  }
-}
 </style>

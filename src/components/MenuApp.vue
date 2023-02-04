@@ -7,7 +7,7 @@
     </div>
     <div id="menu-title" class="item" href="">WAIFU LEARN</div>
     <div class="item" href="">
-    <a href="/opicoes">
+    <a href="/opcoes">
       <img class="item-icon" src="../assets/img/options.svg" alt="" />
     </a>
     </div>
@@ -40,11 +40,11 @@ export default {
   font-size: 22px;
   display: inline-block;
   cursor: pointer;
-  transition: 0.5s;
 }
 
 .item:hover {
-  opacity: 0.2;
+  color: rgb(194, 0, 194);
+  opacity: 0.5;
 }
 
 .item-icon {

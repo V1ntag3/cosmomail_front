@@ -109,7 +109,6 @@ export default {
   height: 45px;
   background-color: #805c83;
   margin: 10px 0px;
-  transition: 0.5s;
   font-weight: 900;
   border-radius: 0px;
 }
