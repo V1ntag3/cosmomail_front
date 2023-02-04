@@ -3,7 +3,7 @@
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="../assets/img/anime-waifu.jpg" alt="Card image cap">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            <p class="card-text"> <strong class="rota-nome">Some One: </strong> Some quick example text to build on the card title and make up the bulk of the card's
                 content.</p>
         </div>
     </div>
@@ -28,6 +28,10 @@ export default {
 
 .card-text {
     font-weight: 300;
+    text-align: justify;
+}
+.rota-nome{
+    font-weight: 900;
 }
 
 @media (max-width:992px) {}
