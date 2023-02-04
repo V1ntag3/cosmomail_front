@@ -7,9 +7,9 @@
                     <input class="form-check-input" type="checkbox" id="mode-18">
                 </div>
             </li>
-            <a href="/">
+            <router-link :to="{ name: 'LoginView' }">
             <li class="opcao">Loggout</li>
-        </a>
+            </router-link>
         </ul>
         <MenuComponent />
 
@@ -33,7 +33,6 @@ export default {
 
 .opcoes-complete ul {
     list-style: none;
-    padding: 0px 40px;
 }
 
 .opcoes {
@@ -80,6 +79,12 @@ export default {
 .form-check-input:checked {
     background-color: #e90dfd;
     border-color: #fd0de9;
+}
+.form-check-input:focus{
+    border-color: #e686fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 13, 201, 0.25);
+    --bs-form-switch-bg: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e);
 }
 @media (max-width:576px) {
     .opcoes {
