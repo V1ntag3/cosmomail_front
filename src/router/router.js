@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import LoginView from "@/views/LoginView.vue";
 import InicialView from "@/views/InicialView.vue";
 import OpcoesView from "@/views/OpcoesView.vue"
-
+import RegistrarView from "@/views/RegistrarView.vue"
 const routes = [
   {
     path: "/",
@@ -18,6 +18,11 @@ const routes = [
     path: "/opcoes",
     name: "OpcoesView",
     component: OpcoesView,
+  },
+  {
+    path: "/registrar",
+    name: "RegistrarView",
+    component: RegistrarView,
   }
 ];
 
