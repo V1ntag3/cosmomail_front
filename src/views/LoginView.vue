@@ -27,8 +27,9 @@
           <router-link :to="{ name: 'InicialView' }">
             <button class="btn">Login</button>
           </router-link>
+          <router-link :to="{ name: 'RegistrarView' }">
           <button class="btn">Registrar</button>
-
+</router-link>
         </form>
       </div>
       <div class="container-redes-sociais">
