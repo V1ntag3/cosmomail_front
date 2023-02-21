@@ -1,6 +1,7 @@
 <template>
   <MenuApp />
   <div class="content-wrapper">
+ 
     Tela Iniciala
 
   </div>

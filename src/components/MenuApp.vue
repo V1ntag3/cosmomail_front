@@ -1,6 +1,8 @@
-<template>
-<!-- Main Sidebar Container -->
+<template><!-- Main Sidebar Container -->
+
+
   <aside class="main-sidebar sidebar-dark-primary">
+  
     <!-- Brand Logo -->
     <a href="/inicial" class="brand-link">
       <span class="brand-text font-weight-light">Mail</span>
@@ -62,8 +64,9 @@
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
+                  <img src="../assets/img/logout.svg" alt="">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Loggout</p>
+                  <p>Logout</p>
                 </a>
               </li>
             </ul>
@@ -76,6 +79,9 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  <div class="botao-abrir-fechar-menu">
+    <img src="../assets/img/menu.svg" alt="">
+  </div>
 </template>
 
 <script>
@@ -93,7 +99,7 @@ export default {
     }
   },
   methods: {
-    async verificarToken(token,data) {
+    async verificarToken(token, data) {
       var config = {
         method: 'put',
         maxBodyLength: Infinity,
@@ -129,10 +135,10 @@ export default {
       var data = JSON.stringify({
         'id': localStorage.getItem('id')
       })
-      if(this.verificarToken(token,data) == null){
+      if (this.verificarToken(token, data) == null) {
         this.$router.push('/')
       }
-     
+
     }
 
   },
@@ -140,6 +146,13 @@ export default {
 </script>
 
 <style scoped>
+.nav-link{
+  text-align: left;
+}
+.nav-link img{
+  width: 22px;
+  margin-right: 5px;
+}
 .user {
   width: 50px;
   height: 50px;
@@ -150,13 +163,29 @@ export default {
   font-size: 35px;
   color: white;
 }
-
-
+aside{
+  z-index: 100;
+}
+.botao-abrir-fechar-menu {
+  top: 40px;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  background-color: gray;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  position: fixed;
+  z-index: 99;
+  cursor: pointer;
+}
+.botao-abrir-fechar-menu img{
+  width: 22px;
+    margin-top: 9px;
+    margin-right: 5px;
+}
 @media (max-width:992px) {}
 
 @media (max-width:768px) {}
 
 @media (max-width:576px) {}
-
-
 </style>
