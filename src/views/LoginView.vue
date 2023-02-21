@@ -5,7 +5,7 @@
     </div>
 
     <div class="container-login">
-      <img class="logo-waifu" src="../assets/img/wl.svg" alt="" srcset="">
+      <img class="logo-email" src="./../assets/img/a-email.svg" alt="" srcset="">
       <h1 class="titulo-tela">
         Login
       </h1>
@@ -13,29 +13,28 @@
         <form action="">
           <div class="sub-container-form">
             <label for="email" class="form-label label-text">Email</label>
-            <input id="email" type="email" class="form-control">
+            <input id="email" type="email" class="form-control" v-model="email" autocomplete="username">
+            <span class="error-text" v-if="erros.email">Campo Inválido</span>
           </div>
           <div class="sub-container-form">
             <label for="senha" class="form-label label-text">Senha</label>
-            <input id="seha" type="password" class="form-control">
+            <input id="senha" type="password" class="form-control" v-model="senha" autocomplete="current-password">
+            <span class="error-text" v-if="erros.senha">Campo Inválido</span>
+            <span class="error-text" v-if="erros.logar">Email/Senha Inválido(s)</span>
           </div>
 
-          <div class="link">
+          <!-- <div class="link">
             <a href="#"> Esqueci a senha?</a>
-          </div>
+          </div> -->
 
-          <router-link :to="{ name: 'InicialView' }">
-            <button class="btn">Login</button>
-          </router-link>
-          <router-link :to="{ name: 'RegistrarView' }">
-          <button class="btn">Registrar</button>
-</router-link>
         </form>
+        <button class="btn" @click="validarLogar()">Login</button>
+
+        <router-link :to="{ name: 'RegistrarView' }">
+          <button class="btn">Registrar</button>
+        </router-link>
       </div>
       <div class="container-redes-sociais">
-        <a href="https://wa.me/5586998514018" target="_blank">
-          <i class="bi bi-whatsapp icon-social"></i>
-        </a>
         <a href="https://github.com/V1ntag3" target="_blank">
           <i class="bi bi-github icon-social"></i>
         </a>
@@ -49,17 +48,93 @@
 </template>
 
 <script>
+const http = "http://localhost:8080/"
+const axios = require('axios');
+
+async function logar(config) {
+  try {
+    var r = await axios(config)
+      .then(function (response) {
+        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("id_email", response.data.id)
+        return true
+      })
+      .catch(function (error) {
+        console.log(error);
+        return false
+      });
+    return r;
+  } catch (e) {
+    return null
+  }
+}
 export default {
   name: "LoginView",
   components: {},
+  data() {
+    return {
+      email: "",
+      senha: "",
+      erros: {
+        email: false,
+        senha: false,
+        logar: false
+      }
+    }
+  },
+  methods: {
+    validarLogar() {
+
+      var isValid = true
+      if (this.email == "") {
+        this.erros.email = true
+        isValid = false
+      } else {
+        this.erros.email = false
+      }
+
+      if (this.senha == "") {
+        this.erros.senha = true
+        isValid = false
+      } else {
+        this.erros.senha = false
+      }
+      if (isValid) {
+
+        var data = JSON.stringify({
+          "email": this.email,
+          "senha": this.senha
+        });
+
+        var config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: http + 'usuario/login',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          data: data
+        };
+
+
+        var resposta = logar(config)
+
+        if (resposta) {
+          this.$router.push('/inicial')
+        } else {
+          this.erros.logar = true
+        }
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
-
 .container-image-login {
   width: 70%;
-  background-image: url('../assets/img/anime-waifu.jpg');
+  background-image: url('../assets/img/negocios.jpg');
   background-repeat: none;
   background-size: cover;
   height: 100%;
@@ -67,10 +142,12 @@ export default {
   position: fixed;
   left: 0px;
   top: 0px;
+  background-position: center;
 }
 
-.logo-waifu {
-  width: 150px;
+.logo-email {
+  margin: 65px auto;
+  width: 70px;
 }
 
 .container-login {
@@ -108,14 +185,13 @@ export default {
   color: white;
   width: 100%;
   height: 45px;
-  background-color: #805c83;
+  background-color: #4596e7;
   margin: 10px 0px;
   font-weight: 900;
   border-radius: 0px;
 }
 
 .container-login button:hover {
-  background-color: #805c83;
   opacity: 0.5;
 }
 
@@ -173,9 +249,9 @@ a:hover {
   }
 
   .container-login {
-    margin: 90px auto;
+    margin: 45px auto;
     width: 400px;
-    height: 636px;
+    height: 680px;
     ;
     position: unset;
     border-radius: 20px;
@@ -184,7 +260,7 @@ a:hover {
     box-shadow: 1px 0px 44px 0px rgba(0, 0, 0, 0.75);
   }
 
-  .login-complete{
+  .login-complete {
     background: linear-gradient(207deg, #5c6260, #212c28, #65586f, #5d3c77);
     background-size: 800% 800%;
     background: linear-gradient(247deg, #69716f, #1f3932, #adadad);

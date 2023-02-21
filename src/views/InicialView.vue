@@ -1,55 +1,33 @@
 <template>
-    <div class="inicial-complete">
+  <MenuApp />
+  <div class="content-wrapper">
+    Tela Iniciala
 
-        <div class="row listagem">
-            <h1 class="title-pagina">Rotas de aprendizagem</h1>  
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        <CardRota/>
-        </div>
-        <MenuComponent/>
-    </div>
+  </div>
 </template>
-
+  
 <script>
-import MenuComponent from '@/components/MenuApp.vue'
-import CardRota from '@/components/CardRota.vue'
+//   const http = "http://localhost:8080/"
+//   const axios = require('axios');
+import MenuApp from '@/components/MenuApp.vue';
+
 export default {
-    name: "InicialView",
-    components: { MenuComponent, CardRota},
+  name: "InicialView",
+  components: {
+    MenuApp
+  },
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  }
 };
 </script>
-
+  
 <style scoped>
-.title-pagina{
-    color: white;
-    text-align: initial;
-    margin-bottom: 20px;
-}
-.inicial-complete{
-    background-color: #29303a !important;
-    padding: 30px 0px 70px 0px;
-    overflow-x: hidden;
-}
-.listagem{
-    padding: 110px 40px 0px 40px;
-}
-@media (max-width:576px) {
-    .listagem{
-    padding: 0px 40px; 
-}
-}
+
 </style>
+  

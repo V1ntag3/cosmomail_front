@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+    <router-view></router-view>
 </template>
 
 <script>
@@ -14,20 +14,24 @@ export default {
 <style>
 @import './assets/fonts/fonts-GoodTimes.css';
 @import './assets/fonts/fonts-Poppins.css';
+
 * {
   margin: 0px;
   padding: 0px;
   transition: 0.5s;
   text-decoration: none;
 }
-body{
+
+body {
   height: 100%;
   width: 100%;
 }
-html{
+
+html {
   height: 100%;
   width: 100%;
 }
+
 a {
   color: white;
 }
@@ -56,6 +60,14 @@ a:link {
   color: #1ce6ff;
 }
 
+.error-text {
+  color: rgb(255, 72, 72);
+  font-size: 14px;
+  width: 100%;
+  display: block;
+  text-align: initial;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,8 +76,28 @@ a:link {
   height: 100%;
 }
 
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
 
-/* background-color: white; */
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
 
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+@media (max-width: 991.98px) and (min-width:768px) {
+
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper,
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer,
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+  transition: margin-left .3s ease-in-out;
+  margin-left: 250px;
+}
+}
 
 </style>
