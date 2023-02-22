@@ -7,14 +7,11 @@
       </div>
       <div style="padding: 0px;" class="col-12 col-sm-6 part-2">
         <button @click="deletarMensagens()" class="btn btn-danger">Deletar</button>
-        <button class="btn btn btn-secondary btn-enviar">Enviar Mensagem</button>
-
-
       </div>
     </div>
     <table class="table table-hover table-striped">
       <tbody>
-        <div v-for="(men,index) in mensagens" :key="index" class="card-mensagem">
+        <div v-for="(men, index) in mensagens" :key="index" class="card-mensagem">
           <div class="col-12 col-sm-1 col-md-1 col-lg-1 col-xl-1 item-card"><input type="checkbox" name="" id=""
               v-model="men.deletar"></div>
           <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-4 item-card">{{ men.nome_destinatario }}</div>
@@ -25,7 +22,9 @@
       </tbody>
     </table>
 
-
+    <button class="btn enviar-mensagem">
+      <img src="../assets/img/lapis.svg" alt="">
+    </button>
   </div>
 </template>
   
@@ -45,7 +44,7 @@ export default {
   data() {
     return {
       mensagens: [],
-      mensagens_deletar:[]
+      mensagens_deletar: []
     }
   },
   created() {
@@ -75,7 +74,7 @@ export default {
           .then(function (response) {
 
             var data = response.data.mensagens
-            
+
             for (let index = 0; index < data.length; index++) {
               data[index].deletar = false
             }
@@ -85,7 +84,10 @@ export default {
             console.log(error.response.status)
             return false
           });
-        this.mensagens = r;
+        if (this.mensagens != r) this.mensagens = r;
+        setTimeout(() => {
+          this.getMensagens()
+        }, 40000);
         return r;
       } catch (e) {
         return null
@@ -98,7 +100,7 @@ export default {
         if (mensagens[key].deletar) {
 
           console.log("aqui")
-  
+
           this.mensagens_deletar.push(mensagens[key].id)
         }
       }
@@ -106,13 +108,16 @@ export default {
     },
     async deletarMensagens() {
       var mensagens = this.mensagensParaDeletar()
-      var data = { 'mensagens': this.mensagens_deletar}
+      var data = {
+        'mensagens': this.mensagens_deletar,
+        'apagado_destinatario': true
+      }
       var token = localStorage.getItem('token')
       console.log(JSON.stringify(mensagens))
       var config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: http + 'mensagem/delete' ,
+        url: http + 'mensagem/delete',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -125,7 +130,7 @@ export default {
         var r = await axios(config)
           .then(function (response) {
             console.log(response)
-          window.location.reload()
+            window.location.reload()
             return true
           })
           .catch(function (error) {
@@ -182,9 +187,9 @@ export default {
 
 .card-mensagem:hover {
   cursor: pointer;
-  -webkit-box-shadow: -18px -2px 95px 5px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -18px -2px 95px 5px rgba(0, 0, 0, 0.75);
-  box-shadow: -18px -2px 95px 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 40px 0px rgb(0 0 0 / 31%);
+  -moz-box-shadow: 0px 0px 40px 0px rgb(0 0 0 / 31%);
+  box-shadow: 0px 0px 40px 0px rgb(0 0 0 / 31%);
 }
 
 .item-card {
@@ -199,5 +204,6 @@ tbody {
   .part-1 {
     text-align: center;
   }
-}</style>
+}
+</style>
   

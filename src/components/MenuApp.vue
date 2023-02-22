@@ -1,14 +1,14 @@
 <template>
-<!-- Main Sidebar Container -->
+  <!-- Main Sidebar Container -->
 
 
   <aside class="main-sidebar sidebar-dark-primary">
 
     <!-- Brand Logo -->
-   <div class="brand-link">
-      <span class="brand-text font-weight-light"> 
+    <div class="brand-link">
+      <span class="brand-text font-weight-light">
         <img style="width: 25px;" src="./../assets/img/planet.svg" alt="" srcset=""> CosmoMail</span>
-      </div>
+    </div>
     <div class="close-menu" data-widget="pushmenu">
       <img src="./../assets/img/close.svg" alt="">
     </div>
@@ -20,7 +20,8 @@
           <span class="user-letter">{{ fistLetter }}</span>
         </div>
         <div class="info">
-          <span >{{ nome }}</span>
+          <p class="paragrafo-data">{{ nome }}</p>
+          <p class="paragrafo-data">{{ telefone }}</p>
         </div>
       </div>
 
@@ -40,7 +41,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a @click="this.$router.push('/enviadas')" href="/enviadas" class="nav-link">
                   <img src="../assets/img/bate-papo.svg" alt="">
                   <p>Enviadas</p>
                 </a>
@@ -91,7 +92,6 @@
   <div class="botao-abrir-fechar-menu" data-widget="pushmenu">
     <img src="../assets/img/menu.svg" alt="">
   </div>
-
 </template>
 
 <script>
@@ -106,6 +106,7 @@ export default {
     return {
       fistLetter: "",
       nome: "",
+      telefone: "",
     }
   },
   methods: {
@@ -141,14 +142,18 @@ export default {
       }
     },
     logout() {
-      localStorage.removeItem('token')
+      localStorage.removeItem('nome')
+      localStorage.removeItem('telefone')
+      localStorage.removeItem('email')
       localStorage.removeItem('id')
+      localStorage.removeItem('token')
       this.$router.push("/")
     }
   },
   created() {
-    this.fistLetter = "M"
-    this.nome = "Marcos Vincius"
+    this.telefone = localStorage.getItem('telefone')
+    this.nome = localStorage.getItem('nome')
+    this.fistLetter = this.nome[0]
     var token = localStorage.getItem('token')
     if (token == null || token == "") {
       this.$router.push('/')
@@ -169,8 +174,19 @@ export default {
 .nav-link {
   text-align: left;
 }
-.brand-link{
+
+.paragrafo-data {
+  margin: 0px;
+  color: white;
+  word-wrap: break-word;
+}
+
+.brand-link {
   color: #fff;
+}
+.info{
+  display: block;
+  padding: 0px;
 }
 .navfooter {
   position: absolute;
@@ -188,14 +204,15 @@ export default {
   left: 217px;
   display: none;
 }
-.close-menu:hover{
+
+.close-menu:hover {
   opacity: 0.5;
   cursor: pointer;
-  
+
 }
 
 .user-panel {
-  text-align: initial;
+  text-align: center;
   padding: 0px 10px;
 }
 
@@ -206,19 +223,14 @@ export default {
   background-color: rgb(89, 91, 241);
   border-radius: 50%;
   display: inline-block;
+  margin-bottom: 15px;
 }
-
+.nav-link{
+  padding-left: 13px;
+}
 .user-letter {
   font-size: 31px;
   font-weight: 800;
-  color: white;
-}
-
-.info {
-  display: inline-block;
-}
-
-.info span {
   color: white;
 }
 
@@ -246,15 +258,17 @@ aside {
 }
 
 @media (max-width:992px) {
-  .close-menu{
+  .close-menu {
     display: block;
   }
 }
+
 body:not(.layout-fixed) .main-sidebar {
 
-    position: fixed;
+  position: fixed;
 
 }
+
 @media (max-width:768px) {}
 
 @media (max-width:576px) {}</style>

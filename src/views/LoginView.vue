@@ -71,6 +71,9 @@ export default {
       try {
         var r = await axios(config)
           .then(function (response) {
+            localStorage.setItem("email", response.data.email)
+            localStorage.setItem("nome", response.data.nome)
+            localStorage.setItem("telefone", response.data.telefone)
             localStorage.setItem("token", response.data.token)
             localStorage.setItem("id_email", response.data.id)
             return true

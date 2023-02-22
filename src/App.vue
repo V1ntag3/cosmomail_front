@@ -1,6 +1,5 @@
 <template>
-  
-    <router-view></router-view>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -8,6 +7,20 @@
 export default {
   name: 'App',
   components: {
+  },
+  created() {
+
+    if (window.location.pathname != '/registrar' && window.location.pathname != '/') {
+      if (!localStorage.getItem('token')) {
+        this.$router.push('/')
+      }
+    }
+    if (window.location.pathname == '/registrar' || window.location.pathname == '/') {
+      if (localStorage.getItem('token')) {
+        this.$router.push('/inicial')
+      }
+    }
+
   }
 }
 </script>
@@ -88,12 +101,11 @@ a:link {
 
 @media (max-width: 991.98px) and (min-width:768px) {
 
-body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper,
-body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer,
-body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
-  transition: margin-left .3s ease-in-out;
-  margin-left: 250px;
+  body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper,
+  body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer,
+  body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 250px;
+  }
 }
-}
-
 </style>

@@ -20,7 +20,7 @@
 
                     <div class="sub-container-form">
                         <label for="name" class="form-label label-text">Nome</label>
-                        <input id="name" type="name" class="form-control" v-model="nome">
+                        <input id="name" type="name" class="form-control" v-model="nome" maxlength="27">
                         <span class="error-text" v-if="erros.nome">Campo Inválido</span>
                     </div>
                     <div class="sub-container-form">
