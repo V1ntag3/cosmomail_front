@@ -72,12 +72,14 @@ export default {
 
                 var r = await axios(config)
                     .then(function (response) {
-
+                        console.log("here")
                         var data = response.data.mensagens
-
+                      
                         for (let index = 0; index < data.length; index++) {
+                            // data[index].data = data[index].data.toISOString().split('T')[0]
                             data[index].deletar = false
                         }
+                        console.log(data)
                         return data
                     })
                     .catch(function (error) {
@@ -85,7 +87,7 @@ export default {
                         return false
                     });
                 if (this.mensagens != r) this.mensagens = r;
-
+                    console.log(this.mensagens)
                 return r;
             } catch (e) {
                 return null
@@ -102,13 +104,14 @@ export default {
                     this.mensagens_deletar.push(mensagens[key].id)
                 }
             }
+            console.log(this.mensagens_deletar)
 
         },
         async deletarMensagens() {
             var mensagens = this.mensagensParaDeletar()
             var data = {
                 'mensagens': this.mensagens_deletar,
-                'apagado_remetente': true
+                'apagado_destinatario': false
             }
             var token = localStorage.getItem('token')
             console.log(JSON.stringify(mensagens))
@@ -177,7 +180,7 @@ export default {
 
 .card-mensagem {
     padding: 15px 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: #f2f2f2;
     border-radius: 15px;
 
@@ -198,25 +201,22 @@ tbody {
     padding: 0px 20px;
 }
 
-.enviar-mensagem {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #6c757d;
-}
-
-.enviar-mensagem:hover {
-    box-shadow: 0px 0px 40px 0px rgb(0 0 0 / 31%);
-}
-
 .enviar-mensagem:active {
-    background-color: #6c757d;
+  background-color: #6c757d;
+}
+
+
+@media (min-width: 576px ) and (max-width:992px){
+    .content-wrapper{
+        padding-left: 60px
+    }
 }
 
 @media (max-width: 576px) {
+    .part-2 button {
+    float: unset;
+    margin: 0px auto; 
+}
     .card-mensagem:hover {
         box-shadow: none;
     }
@@ -232,5 +232,6 @@ tbody {
     .content-wrapper {
         padding-left: 25px;
     }
-}</style>
+}
+</style>
     

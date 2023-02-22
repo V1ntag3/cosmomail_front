@@ -130,10 +130,16 @@ export default {
           .catch(function (error) {
             console.log(error.response.status)
             if (error.response.status === 401) {
+              localStorage.removeItem('telefone')
+              localStorage.removeItem('email')
+              localStorage.removeItem('nome')
               localStorage.removeItem('token')
               localStorage.removeItem('id')
               this.$router.push('/')
             }
+            setTimeout(() => {
+              this.verificarToken()
+            }, 40000);
             return false
           });
         return r;
@@ -184,10 +190,12 @@ export default {
 .brand-link {
   color: #fff;
 }
-.info{
+
+.info {
   display: block;
   padding: 0px;
 }
+
 .navfooter {
   position: absolute;
   bottom: 0px;
@@ -225,9 +233,11 @@ export default {
   display: inline-block;
   margin-bottom: 15px;
 }
-.nav-link{
+
+.nav-link {
   padding-left: 13px;
 }
+
 .user-letter {
   font-size: 31px;
   font-weight: 800;

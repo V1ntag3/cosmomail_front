@@ -99,6 +99,31 @@ a:link {
   opacity: 0;
 }
 
+.enviar-mensagem {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #6c757d;
+}
+
+.enviar-mensagem:hover {
+  background-color: #6c757d;
+  box-shadow: 0px 0px 40px 0px rgb(0 0 0 / 31%);
+}
+
+
+@media (max-width: 576px) {
+
+  .enviar-mensagem:hover {
+    
+    box-shadow: none;
+  }
+
+}
+
 @media (max-width: 991.98px) and (min-width:768px) {
 
   body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper,
@@ -107,5 +132,4 @@ a:link {
     transition: margin-left .3s ease-in-out;
     margin-left: 250px;
   }
-}
-</style>
+}</style>

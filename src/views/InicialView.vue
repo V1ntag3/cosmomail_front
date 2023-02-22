@@ -14,7 +14,7 @@
         <div v-for="(men, index) in mensagens" :key="index" class="card-mensagem">
           <div class="col-12 col-sm-1 col-md-1 col-lg-1 col-xl-1 item-card"><input type="checkbox" name="" id=""
               v-model="men.deletar"></div>
-          <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-4 item-card">{{ men.nome_destinatario }}</div>
+          <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-4 item-card">{{ men.nome_remetente }}</div>
           <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 item-card">{{ men.assunto }}</div>
           <div class="col-12 col-sm-2 col-md-3 col-lg-3 col-xl-3 item-card">{{ men.data }}</div>
         </div>
@@ -23,8 +23,8 @@
     </table>
 
     <button class="btn enviar-mensagem">
-      <img src="../assets/img/lapis.svg" alt="">
-    </button>
+            <img src="../assets/img/lapis.svg" alt="">
+        </button>
   </div>
 </template>
   
@@ -72,7 +72,7 @@ export default {
 
         var r = await axios(config)
           .then(function (response) {
-
+        
             var data = response.data.mensagens
 
             for (let index = 0; index < data.length; index++) {
@@ -179,7 +179,7 @@ export default {
 
 .card-mensagem {
   padding: 15px 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: #f2f2f2;
   border-radius: 15px;
 
@@ -200,10 +200,27 @@ tbody {
   padding: 0px 20px;
 }
 
+.enviar-mensagem:active {
+  background-color: #6c757d;
+}
+@media (min-width: 576px ) and (max-width:992px){
+    .content-wrapper{
+        padding-left: 60px
+    }
+}
+
 @media (max-width: 576px) {
   .part-1 {
     text-align: center;
   }
+  .part-2 button{
+    float: unset;
+    margin: 0px auto; 
+}
+.card-mensagem:hover {
+        box-shadow: none;
+    }
+
 }
 </style>
   
