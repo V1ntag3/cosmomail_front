@@ -21,17 +21,13 @@ export default {
   padding: 0px;
   transition: 0.5s;
   text-decoration: none;
+  font-family: Poppins-Regular;
 }
 
 body {
-  height: 100%;
   width: 100%;
 }
 
-html {
-  height: 100%;
-  width: 100%;
-}
 
 a {
   color: white;
@@ -74,7 +70,6 @@ a:link {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%;
 }
 
 .slide-fade-enter-active {

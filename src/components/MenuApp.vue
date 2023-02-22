@@ -1,22 +1,26 @@
-<template><!-- Main Sidebar Container -->
+<template>
+<!-- Main Sidebar Container -->
 
 
   <aside class="main-sidebar sidebar-dark-primary">
-  
-    <!-- Brand Logo -->
-    <a href="/inicial" class="brand-link">
-      <span class="brand-text font-weight-light">Mail</span>
-    </a>
 
+    <!-- Brand Logo -->
+   <div class="brand-link">
+      <span class="brand-text font-weight-light"> 
+        <img style="width: 25px;" src="./../assets/img/planet.svg" alt="" srcset=""> CosmoMail</span>
+      </div>
+    <div class="close-menu" data-widget="pushmenu">
+      <img src="./../assets/img/close.svg" alt="">
+    </div>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3">
         <div class="user">
-          <span class="user-letter">{{ }}</span>
+          <span class="user-letter">{{ fistLetter }}</span>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Nome da pessoa</a>
+          <span >{{ nome }}</span>
         </div>
       </div>
 
@@ -29,41 +33,45 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a @click="this.$router.push('/inicial')" href="/inicial" class="nav-link">
+                  <img src="../assets/img/inbox.svg" alt="" srcset="">
                   <p>Inbox</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <img src="../assets/img/bate-papo.svg" alt="">
                   <p>Enviadas</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <img src="../assets/img/lixo.svg" alt="" srcset="">
                   <p>Lixeira</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <img src="../assets/img/send.svg" alt="" srcset="">
                   <p>Enviar Mensagem</p>
                 </a>
               </li>
 
+
+            </ul>
+            <ul class="nav nav-treeview nav-footer">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <img src="../assets/img/settings.svg" alt="" srcset="">
                   <p>Configurações</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" @click="logout()">
                   <img src="../assets/img/logout.svg" alt="">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Logout</p>
@@ -79,9 +87,11 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <div class="botao-abrir-fechar-menu">
+
+  <div class="botao-abrir-fechar-menu" data-widget="pushmenu">
     <img src="../assets/img/menu.svg" alt="">
   </div>
+
 </template>
 
 <script>
@@ -118,16 +128,27 @@ export default {
           })
           .catch(function (error) {
             console.log(error.response.status)
-            if (error.response.status == 401) return null
+            if (error.response.status === 401) {
+              localStorage.removeItem('token')
+              localStorage.removeItem('id')
+              this.$router.push('/')
+            }
             return false
           });
         return r;
       } catch (e) {
         return null
       }
+    },
+    logout() {
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+      this.$router.push("/")
     }
   },
   created() {
+    this.fistLetter = "M"
+    this.nome = "Marcos Vincius"
     var token = localStorage.getItem('token')
     if (token == null || token == "") {
       this.$router.push('/')
@@ -135,9 +156,8 @@ export default {
       var data = JSON.stringify({
         'id': localStorage.getItem('id')
       })
-      if (this.verificarToken(token, data) == null) {
-        this.$router.push('/')
-      }
+      this.verificarToken(token, data).then()
+
 
     }
 
@@ -146,28 +166,68 @@ export default {
 </script>
 
 <style scoped>
-.nav-link{
+.nav-link {
   text-align: left;
 }
-.nav-link img{
-  width: 22px;
-  margin-right: 5px;
+.brand-link{
+  color: #fff;
 }
+.navfooter {
+  position: absolute;
+  bottom: 0px;
+}
+
+.nav-link img {
+  width: 22px;
+  margin-right: 15px;
+}
+
+.close-menu {
+  position: absolute;
+  top: 13px;
+  left: 217px;
+  display: none;
+}
+.close-menu:hover{
+  opacity: 0.5;
+  cursor: pointer;
+  
+}
+
+.user-panel {
+  text-align: initial;
+  padding: 0px 10px;
+}
+
 .user {
+  text-align: center;
   width: 50px;
   height: 50px;
   background-color: rgb(89, 91, 241);
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .user-letter {
-  font-size: 35px;
+  font-size: 31px;
+  font-weight: 800;
   color: white;
 }
-aside{
+
+.info {
+  display: inline-block;
+}
+
+.info span {
+  color: white;
+}
+
+aside {
   z-index: 100;
 }
+
 .botao-abrir-fechar-menu {
-  top: 40px;
+  top: 35px;
   left: 0px;
   width: 40px;
   height: 40px;
@@ -178,14 +238,23 @@ aside{
   z-index: 99;
   cursor: pointer;
 }
-.botao-abrir-fechar-menu img{
-  width: 22px;
-    margin-top: 9px;
-    margin-right: 5px;
-}
-@media (max-width:992px) {}
 
+.botao-abrir-fechar-menu img {
+  width: 22px;
+  margin-top: 9px;
+  margin-right: 5px;
+}
+
+@media (max-width:992px) {
+  .close-menu{
+    display: block;
+  }
+}
+body:not(.layout-fixed) .main-sidebar {
+
+    position: fixed;
+
+}
 @media (max-width:768px) {}
 
-@media (max-width:576px) {}
-</style>
+@media (max-width:576px) {}</style>

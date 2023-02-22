@@ -1,5 +1,5 @@
 <template>
-    <div class="registrar-complete" style="width: 100%;">
+    <div class="registrar-complete">
         <div class="container-image-registrar">
 
         </div>
@@ -225,7 +225,7 @@ export default {
     position: absolute;
     width: 30px;
     right: 27px;
-    top: 100px;
+    top: 90px;
 }
 
 .botao-voltar:hover {
@@ -339,6 +339,7 @@ a:hover {
         -webkit-box-shadow: 1px 0px 44px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 1px 0px 44px 0px rgba(0, 0, 0, 0.75);
         box-shadow: 1px 0px 44px 0px rgba(0, 0, 0, 0.75);
+        height: 770px;
     }
 
     .registrar-complete {
@@ -350,6 +351,9 @@ a:hover {
         -webkit-animation: AnimationName 8s ease infinite;
         -moz-animation: AnimationName 8s ease infinite;
         animation: AnimationName 8s ease infinite;
+        width: 100%;
+        height: 100%;
+        position: absolute;
     }
 
     @-webkit-keyframes AnimationName {
@@ -397,7 +401,7 @@ a:hover {
     .botao-voltar {
         position: relative;
         right: -155px;
-        top: -44px;
+        top: -45px;
     }
 }
 
@@ -405,22 +409,15 @@ a:hover {
     .botao-voltar {
         position: absolute;
         right: 30px;
-        top: 100px;
-
-    }
-
-    .registrar-complete {
-        height: auto;
+        top: 90px;
 
     }
 
     .container-registrar {
         width: 100%;
-        height: 100%;
         margin: 0px;
         border-radius: 0px;
-        position: absolute;
-
+        height: -webkit-fill-available;
     }
 
     .container-redes-sociais {

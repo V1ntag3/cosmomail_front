@@ -1,5 +1,5 @@
 <template>
-  <div class="login-complete" style="height: 100%; width: 100%;">
+  <div class="login-complete">
     <div class="container-image-login">
 
     </div>
@@ -51,23 +51,7 @@
 const http = "http://localhost:8080/"
 const axios = require('axios');
 
-async function logar(config) {
-  try {
-    var r = await axios(config)
-      .then(function (response) {
-        localStorage.setItem("token", response.data.token)
-        localStorage.setItem("id_email", response.data.id)
-        return true
-      })
-      .catch(function (error) {
-        console.log(error);
-        return false
-      });
-    return r;
-  } catch (e) {
-    return null
-  }
-}
+
 export default {
   name: "LoginView",
   components: {},
@@ -83,6 +67,27 @@ export default {
     }
   },
   methods: {
+    async logar(config) {
+      try {
+        var r = await axios(config)
+          .then(function (response) {
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem("id_email", response.data.id)
+            return true
+          })
+          .catch(function (error) {
+            console.log(error);
+            this.erros.logar = true
+            return false
+          });
+          if(r){
+            this.$router.push('/inicial')
+          }
+        return r;
+      } catch (e) {
+        return null
+      }
+    },
     validarLogar() {
 
       var isValid = true
@@ -118,13 +123,7 @@ export default {
         };
 
 
-        var resposta = logar(config)
-
-        if (resposta) {
-          this.$router.push('/inicial')
-        } else {
-          this.erros.logar = true
-        }
+        this.logar(config)
       }
     }
   }
@@ -146,7 +145,7 @@ export default {
 }
 
 .logo-email {
-  margin: 65px auto;
+  margin: 40px auto;
   width: 70px;
 }
 
@@ -268,6 +267,9 @@ a:hover {
     -webkit-animation: AnimationName 8s ease infinite;
     -moz-animation: AnimationName 8s ease infinite;
     animation: AnimationName 8s ease infinite;
+    height: 100%;
+    width: 100%;
+    position: absolute;
   }
 
   @-webkit-keyframes AnimationName {
