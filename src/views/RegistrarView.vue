@@ -5,7 +5,7 @@
         </div>
 
         <div class="container-registrar">
-            <img class="logo-email" src="./../assets/img/a-email.svg" alt="" srcset="">
+            <img class="logo-email" src="./../assets/img/planet.svg" alt="" srcset="">
             <div class="row">
                 <h1 class="titulo-tela">
                     Se Registrar
@@ -20,12 +20,12 @@
 
                     <div class="sub-container-form">
                         <label for="name" class="form-label label-text">Nome</label>
-                        <input id="name" type="name" class="form-control" v-model="nome" maxlength="27">
+                        <input id="name" type="text" class="form-control" v-model="nome" maxlength="27">
                         <span class="error-text" v-if="erros.nome">Campo Inválido</span>
                     </div>
                     <div class="sub-container-form">
                         <label for="email" class="form-label label-text">Email</label>
-                        <input id="email" type="email" class="form-control" autocomplete="username" v-model="email">
+                        <input id="email" type="text" class="form-control" autocomplete="off" v-model="email">
                         <span class="error-text" v-if="erros.email">Campo Inválido</span>
                         <span class="error-text" v-if="erros.registrar">Email já cadastrado</span>
                     </div>
@@ -37,13 +37,12 @@
                     </div>
                     <div class="sub-container-form">
                         <label for="senha" class="form-label label-text">Senha</label>
-                        <input id="senha" type="password" class="form-control" autocomplete="current-password"
-                            v-model="senha">
+                        <input id="senha" type="password" class="form-control" autocomplete="none" v-model="senha">
                         <span class="error-text" v-if="erros.senha">Campo Inválido</span>
                     </div>
                     <div class="sub-container-form">
                         <label for="confirmar-senha" class="form-label label-text">Confirmar Senha</label>
-                        <input id="confirmar-senha" type="password" class="form-control" autocomplete="current-password"
+                        <input id="confirmar-senha" type="password" class="form-control" autocomplete="none"
                             v-model="confirmar_senha">
                         <span class="error-text" v-if="erros.confirmar_senha">Campo Inválido</span>
                         <span class="error-text" v-if="erros.senha_diferentes">Senhas não coincidem</span>
@@ -80,7 +79,6 @@ async function registrar(config) {
                 return true
             })
             .catch(function (response) {
-                console.log(response.response.data)
                 if (response.response.data == 'Email já utilizado') {
                     return null
                 }
@@ -188,7 +186,7 @@ export default {
 
 
                 var resposta = await registrar(config)
-          
+
                 if (resposta == true) {
                     this.$router.push('/')
                 }
@@ -417,7 +415,6 @@ a:hover {
         width: 100%;
         margin: 0px;
         border-radius: 0px;
-        height: -webkit-fill-available;
     }
 
     .container-redes-sociais {

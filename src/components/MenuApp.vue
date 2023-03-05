@@ -34,49 +34,42 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a @click="this.$router.push('/inicial')" href="/inicial" class="nav-link">
+                <div @click="closeMenu(); this.$router.push('/inicial') " class="nav-link">
                   <img src="../assets/img/inbox.svg" alt="" srcset="">
                   <p>Inbox</p>
-                </a>
+                </div>
               </li>
 
               <li class="nav-item">
-                <a @click="this.$router.push('/enviadas')" href="/enviadas" class="nav-link">
+                <div @click="closeMenu(); this.$router.push('/enviadas')" class="nav-link">
                   <img src="../assets/img/bate-papo.svg" alt="">
                   <p>Enviadas</p>
-                </a>
+                </div>
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <img src="../assets/img/lixo.svg" alt="" srcset="">
-                  <p>Lixeira</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+                <div @click="closeMenu(); this.$router.push('/enviar_mensagem')" class="nav-link">
                   <img src="../assets/img/send.svg" alt="" srcset="">
                   <p>Enviar Mensagem</p>
-                </a>
+                </div>
               </li>
 
 
             </ul>
             <ul class="nav nav-treeview nav-footer">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <div @click="closeMenu(); this.$router.push('/configuracoes')" class="nav-link">
                   <img src="../assets/img/settings.svg" alt="" srcset="">
                   <p>Configurações</p>
-                </a>
+                </div>
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link" @click="logout()">
+                <div class="nav-link" @click="logout()">
                   <img src="../assets/img/logout.svg" alt="">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Logout</p>
-                </a>
+                </div>
               </li>
             </ul>
           </li>
@@ -97,6 +90,7 @@
 <script>
 const http = "http://localhost:8080/"
 const axios = require('axios');
+
 
 
 export default {
@@ -128,8 +122,8 @@ export default {
             return true
           })
           .catch(function (error) {
-            console.log(error.response.status)
-            if (error.response.status === 401) {
+
+            if (error.response.status == 401) {
               localStorage.removeItem('telefone')
               localStorage.removeItem('email')
               localStorage.removeItem('nome')
@@ -140,8 +134,11 @@ export default {
             setTimeout(() => {
               this.verificarToken()
             }, 40000);
-            return false
+            return error.response.status
           });
+        if (r == 401) {
+          this.$router.push('/')
+        }
         return r;
       } catch (e) {
         return null
@@ -151,9 +148,19 @@ export default {
       localStorage.removeItem('nome')
       localStorage.removeItem('telefone')
       localStorage.removeItem('email')
-      localStorage.removeItem('id')
+      localStorage.removeItem('id_email')
       localStorage.removeItem('token')
       this.$router.push("/")
+    },
+    closeMenu() {
+      setTimeout(() => {
+        if (window.innerWidth < 992) {
+          document.querySelector('body').classList.remove('sidebar-open')
+          document.querySelector('body').classList.add("sidebar-closed")
+          document.querySelector('body').classList.add("sidebar-collapse")
+        }
+      }, 20);
+
     }
   },
   created() {
@@ -171,7 +178,7 @@ export default {
 
 
     }
-
+    this.closeMenu()
   },
 };
 </script>
@@ -235,6 +242,7 @@ export default {
 }
 
 .nav-link {
+  cursor: pointer;
   padding-left: 13px;
 }
 
@@ -281,4 +289,5 @@ body:not(.layout-fixed) .main-sidebar {
 
 @media (max-width:768px) {}
 
-@media (max-width:576px) {}</style>
+@media (max-width:576px) {}
+</style>

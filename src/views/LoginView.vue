@@ -5,7 +5,8 @@
     </div>
 
     <div class="container-login">
-      <img class="logo-email" src="./../assets/img/a-email.svg" alt="" srcset="">
+
+      <img class="logo-email" src="./../assets/img/planet.svg" alt="" srcset="">
       <h1 class="titulo-tela">
         Login
       </h1>
@@ -79,13 +80,14 @@ export default {
             return true
           })
           .catch(function (error) {
-            console.log(error);
-            this.erros.logar = true
+
             return false
           });
-          if(r){
-            this.$router.push('/inicial')
-          }
+        if (r) {
+          this.$router.push('/inicial')
+        } else {
+          this.erros.logar = true
+        }
         return r;
       } catch (e) {
         return null
