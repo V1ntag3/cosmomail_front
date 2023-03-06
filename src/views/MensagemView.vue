@@ -6,7 +6,7 @@
                 <h1 style="margin-top: -10px;">Mensagem</h1>
             </div>
             <div style="padding: 0px;" class="col-12 col-sm-6 part-2">
-                <button v-if="isdest" @click="this.$router.push('/enviar_mensagem/' + this.resposta)" class="btn btn-secondary botao-responder">Responder</button>
+                <button v-if="isdest" @click="this.$router.push('/enviar_mensagem/' + this.id)" class="btn btn-secondary botao-responder">Responder</button>
 
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <span > <span class="title-item">Para:</span> {{ nome_destinatario }} - {{ email_destinatario }}</span>
                 </div>
                 <div class="assunto">
-                    <span class="title-item">Assunto:</span> {{ assunto }} <span v-if="isResposta"> - <span>Resposta</span> </span>
+                    <span class="title-item">Assunto:</span> {{ assunto }} <span v-if="isResposta"> - <a :href = "'/mensagem/' + String(this.resposta)"  >Resposta</a> </span>
                 </div>
                 <div class="corpo">
                     {{ corpo }}
@@ -61,7 +61,7 @@ export default {
 
                 var r = await axios(config)
                     .then(function (response) {
-            
+                        console.log(response.data)
                         return response.data
                     })
                     .catch(function (error) {
@@ -77,11 +77,12 @@ export default {
                 this.resposta = r.resposta
                 this.nome_destinatario = r.nome_destinatario
                 this.email_destinatario = r.email_destinatario
-
+                this.id = r.id
+                
                 if (this.email_destinatario == localStorage.getItem('email')) {
                     this.isdest = true
                 }
-          
+                console.log(this.resposta)
                 if(r.resposta > 0){
                     this.isResposta = true
                 }
@@ -104,6 +105,7 @@ export default {
     ,
     data() {
         return {
+            id:"",
             resposta:null,
             isdest: false,
             currentMensagem: "",
