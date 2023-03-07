@@ -45,6 +45,8 @@ export default {
     },
     created() {
         this.resposta = this.$route.params.id
+        this.assunto = this.$route.params.assunto
+        this.corpo = this.$route.params.corpo
     },
     data() {
         return {

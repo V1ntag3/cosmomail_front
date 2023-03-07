@@ -6,7 +6,10 @@
                 <h1 style="margin-top: -10px;">Mensagem</h1>
             </div>
             <div style="padding: 0px;" class="col-12 col-sm-6 part-2">
-                <button v-if="isdest" @click="this.$router.push('/enviar_mensagem/' + this.id)" class="btn btn-secondary botao-responder">Responder</button>
+
+                <button style="margin-right: 10px;" @click="this.$router.push('/enviar_mensagem/' + this.assunto + '/' + this.corpo)" class="btn btn-secondary botao-responder">Encaminhar</button>
+
+                <button style="margin-right: 10px;" v-if="isdest" @click="this.$router.push('/enviar_mensagem/' + this.id)" class="btn btn-secondary botao-responder">Responder</button>
 
             </div>
         </div>

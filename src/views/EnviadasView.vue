@@ -1,7 +1,7 @@
 <template>
     <MenuApp />
     <div style="padding-top: 30px;
-                padding-left: 55px;" class="content-wrapper">
+                    padding-left: 55px;" class="content-wrapper">
         <div style="padding: 0px;" class="col-12">
             <div style="padding: 0px;" class="col-12 col-sm-6 part-1">
                 <h1 style="margin-top: -10px;">Envidas</h1>
@@ -86,7 +86,7 @@ export default {
 
                         for (let index = 0; index < data.length; index++) {
                             var data_data = new Date(data[index].data);
-                         
+
                             data[index].data = data_data.toLocaleDateString('pt-BR', { timeZone: 'UTC' }) + " às " + data[index].data_time;
                             data[index].deletar = false
                         }
@@ -100,7 +100,7 @@ export default {
                     this.$router.push('/')
                 }
                 if (this.mensagens != r) this.mensagens = r;
-       
+
                 return r;
             } catch (e) {
                 return null
@@ -124,7 +124,7 @@ export default {
                 'apagado_destinatario': false
             }
             var token = localStorage.getItem('token')
-     
+
             var config = {
                 method: 'post',
                 maxBodyLength: Infinity,
@@ -141,15 +141,18 @@ export default {
                 var r = await axios(config)
                     .then(function (response) {
                         console.log(response)
-                        window.location.reload()
+
                         return true
                     })
                     .catch(function (error) {
-             
+
                         return error.response.status
                     });
                 if (r == 401) {
                     this.$router.push('/')
+                }
+                if (r == true) {
+                    this.$router.go(0)
                 }
                 this.mensagens = r;
                 return r;

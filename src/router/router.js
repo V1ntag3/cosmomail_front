@@ -52,7 +52,16 @@ const routes = [
     path: "/mensagem/:id",
     name: "MensagemView",
     component: MensagemView,
-  }
+  },{
+    path: "/enviar_mensagem",
+    name: "EnviarMensagemView",
+    component: EnviarMensagemView,
+  },
+  {
+    path: "/enviar_mensagem/:assunto/:corpo",
+    name: "EnviarMensagemRespView",
+    component: EnviarMensagemView,
+  },
 ];
 
 const router = createRouter({

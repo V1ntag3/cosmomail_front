@@ -143,7 +143,7 @@ export default {
         var r = await axios(config)
           .then(function (response) {
             console.log(response)
-            window.location.reload()
+          
             return true
           })
           .catch(function (error) {
@@ -152,6 +152,9 @@ export default {
           });
         if (r == 401) {
           this.$router.push('/')
+        }
+        if(r == true){
+          this.$router.go(0)
         }
         this.mensagens = r;
         return r;
