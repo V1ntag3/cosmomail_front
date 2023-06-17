@@ -120,10 +120,11 @@ export default {
 
     },
     async deletarMensagens() {
-      var mensagens = this.mensagensParaDeletar()
+      this.mensagensParaDeletar()
+
       var data = {
-        'mensagens': this.mensagens_deletar,
-        'apagado_destinatario': true
+        "mensagens":this.mensagens_deletar ,
+        "apagado_destinatario": true
       }
       var token = localStorage.getItem('token')
 
@@ -154,7 +155,7 @@ export default {
           this.$router.push('/')
         }
         if(r == true){
-          this.$router.go(0)
+          this.getMensagens()
         }
         this.mensagens = r;
         return r;

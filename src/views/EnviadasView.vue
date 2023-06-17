@@ -1,7 +1,7 @@
 <template>
     <MenuApp />
     <div style="padding-top: 30px;
-                    padding-left: 55px;" class="content-wrapper">
+                        padding-left: 55px;" class="content-wrapper">
         <div style="padding: 0px;" class="col-12">
             <div style="padding: 0px;" class="col-12 col-sm-6 part-1">
                 <h1 style="margin-top: -10px;">Envidas</h1>
@@ -118,10 +118,11 @@ export default {
 
         },
         async deletarMensagens() {
-            var mensagens = this.mensagensParaDeletar()
+            this.mensagensParaDeletar()
+
             var data = {
-                'mensagens': this.mensagens_deletar,
-                'apagado_destinatario': false
+                "mensagens": this.mensagens_deletar,
+                "apagado_destinatario": false
             }
             var token = localStorage.getItem('token')
 
@@ -152,7 +153,7 @@ export default {
                     this.$router.push('/')
                 }
                 if (r == true) {
-                    this.$router.go(0)
+                    this.getMensagens()
                 }
                 this.mensagens = r;
                 return r;
